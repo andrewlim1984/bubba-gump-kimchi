@@ -11,9 +11,10 @@ angular.module('bgk', [])
 		console.log('Error: ' + data);
 	});
 	$scope.createTodo = function() {
-		$http.post('/api/todos', $scope.formData)
+		$http.post('/api/todos', $scope.username, $scope.post)
 		.success(function(data) {
-			$scope.formData = {};
+			$scope.username = {};
+			$scope.post = {};
 			$scope.todos = data;
 			console.log(data);
 		})

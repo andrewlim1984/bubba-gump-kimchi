@@ -12,17 +12,21 @@
 			<div>
 				<div ng-repeat="todo in todos">
 					<button type="button" ng-click="deleteTodo(todo._id)">DELETE</button>
-					<span>{{ todo.text }}</span>
+					<span>{{ todo.username }}&nbsp;:&nbsp;&nbsp;{{ todo.text }}</span>
 				</div>
 			</div>
 		</div>
 		<div id="todo-form">
 			<div class>
-				<form>
+				<form ng-submit="createTodo()">
 					<div>
-						<input type="text" ng-model="formData.text">
+						Username: <input type="text" ng-model="username.text" placeholder="USERNAME" />
+						Post: <input type="text" ng-model="post.text" placeholder="MESSAGE">
+						<button type="submit">Post</button>
 					</div>
-					<button type="submit" ng-click="createTodo()">Add</button>
+				<!-- 		<input type="text" ng-model="formData.text">
+					</div>
+					<button type="submit" ng-click="createTodo()">Add</button> -->
 				</form>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ module.exports = function(app) {
 	});
 	app.post('/api/todos', function(req, res) {
 		Todo.create({
+			username : req.body.text,
 			text : req.body.text,
 			done : false
 		}, function(err, todo) {

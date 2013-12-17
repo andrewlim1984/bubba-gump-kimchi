@@ -1,30 +1,22 @@
-var express = require('express');
-var app = express();    //create our app with express
-var mongoose = require('mongoose'); // mongoose for mongodb
-var port = process.env.PORT || 5000;
-var passport = require('passport');
-var flash = require('connect-flash');
+var express  = require('express');
+var app      = express(); 					
+var mongoose = require('mongoose'); 					
+var port  	 = process.env.PORT || 5000; 				
+var database = require('./config/database');
 
-mongoose.connect('mongodb://root:pass@mongo.onmodulus.net:27017/ax5Oqevo');
+mongoose.connect(database.url, function(err) {
+  if (err) return err;
+console.log('successfully connected to mongoDB!');
+});
 
 app.configure(function() {
-	app.use(express.static(__dirname + '/public')); //sets the static file location
-	app.use(express.logger('dev')); //logs every request to the console
-	app.use(express.cookieParser());
-	app.use(express.bodyParser()); // pull information from html in POST
-	app.use(express.methodOverride()); //simulate DELETE and PUT
-	app.use(express.session({
-		secret: 'pariscongobomie'
-	}));
-	app.use(passport.initialize());
-	app.use(passport.session());
-	app.use(flash());
+	app.use(express.static(__dirname + '/public'));
+	app.use(express.logger('dev')); 						
+	app.use(express.bodyParser()); 							
+	app.use(express.methodOverride()); 						
 });
 
+require('./app/routes')(app);
 
-// require('./app/routes')(app, passport);
-// require('./config/passport')(passport);
-
-app.listen(port, function() {
-	console.log("App listening on port 5000");
-});
+app.listen(port);
+console.log("App listening on port " + port);

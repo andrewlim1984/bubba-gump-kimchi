@@ -1,7 +1,7 @@
 {
-"name" : "bubba-gump-kimchi",
+"name" : "node-todo",
 "version" : "0.0.0",
-"description" : "bubba gump kimchi",
+"description" : "Simple todo application.",
 "main" : "server.js",
 "author" : "AndrewLim",
 "dependencies" : {
